@@ -29,6 +29,10 @@ resource "hcloud_server" "ansible-tests" {
      host = hcloud_server.ansible-tests.ipv4_address
    }
   }
+
+  provisioner "local-exec" {
+    command = "ssh-keygen -R  ${hcloud_server.ansible-tests.ipv4_address}"
+  }
 }
 
 output "public_ip_address" {
