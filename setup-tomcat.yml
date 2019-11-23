@@ -1,4 +1,4 @@
-- hosts: ansible-tests
+- hosts: ansible-test-instance
   vars:
     tomcat_version: 9.0.27
     tomcat_base_name: apache-tomcat-{{ tomcat_version }}

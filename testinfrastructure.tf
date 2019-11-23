@@ -7,8 +7,8 @@ provider "hcloud" {
 }
 
 # Create a server
-resource "hcloud_server" "ansible-tests" {
-  name = "ansible-tests"
+resource "hcloud_server" "ansible-test-article" {
+  name = "ansible-test-instance"
   image = "ubuntu-18.04"
   server_type = "cx11"
   location = "nbg1"
@@ -26,15 +26,15 @@ resource "hcloud_server" "ansible-tests" {
      type        = "ssh"
      user        = "root"
      private_key = file(var.ssh_key)
-     host = hcloud_server.ansible-tests.ipv4_address
+     host = hcloud_server.ansible-test-article.ipv4_address
    }
   }
 
   provisioner "local-exec" {
-    command = "ssh-keygen -R  ${hcloud_server.ansible-tests.ipv4_address}"
+    command = "ssh-keygen -R  ${hcloud_server.ansible-test-article.ipv4_address}"
   }
 }
 
 output "public_ip_address" {
-  value = "${hcloud_server.ansible-tests.ipv4_address}"
+  value = "${hcloud_server.ansible-test-article.ipv4_address}"
 }
