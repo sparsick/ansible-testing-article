@@ -31,7 +31,7 @@ resource "hcloud_server" "ansible-test-article" {
   }
 
   provisioner "local-exec" {
-    command = "ssh-keygen -R  ${hcloud_server.ansible-test-article.ipv4_address}"
+    command = "ssh-keygen -R ${hcloud_server.ansible-test-article.ipv4_address}; ssh-keyscan -H ${hcloud_server.ansible-test-article.ipv4_address} >> ~/.ssh/known_hosts"
   }
 }
 
