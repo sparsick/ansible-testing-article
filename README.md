@@ -22,7 +22,9 @@ terraform apply -var="hcloud_token=..."
 
 terraform destroy -var="hcloud_token=..."
 
-
-
 ## Run Ansible
-ansible-playbook -u root --private-key=/home/sparsick/.ssh/id_hetzner_ansible_test -i inventory/test.hcloud.yml setup-tomcat.yml
+ansible-playbook --private-key=/home/sparsick/.ssh/id_hetzner_ansible_test -i inventory/test.hcloud.yml setup-tomcat.yml
+
+## Run Python Tests
+Need the Ansible configuration in ansible.cfg
+py.test --connection=ansible --ansible-inventory=inventory/test.hcloud.yml --force-ansible -v tests/*.py
